@@ -1,0 +1,39 @@
+1. docker pull ubuntu 								(creating ubuntu image with latest version)
+2.docker run ubuntu									(going into the container)
+3.docker run -it --name sreeni ubuntu /bin/bash  (or) docker run -it --name sreeni ubuntu  		(when i need to add or change name/ naming )
+(only one container is started that created manually name )
+=====================================================================================================================
+				( from particular folder )
+1. docker build -t sreeni -f Dockerfile.txt .							(creating sreeni image with latest version in particular folder)
+2.docker images									(checking the images)
+3.docker run -it --name sreeni1{container name} sreeni{image name} (or) docker run {image name}	(creating conatiner with name )
+4.docker ps 									(running conrainer)
+5.docker ps -a 									(all container)
+6.docker start <container name>								(starting the container)
+7.docker stop <container name>								(stopping the container)
+8.docker attach <container name>							(after starting the container , we should use attach
+										 - is used for go that container )
+								- cat /etc/os-release - (is used to check to latest version and other details)
+9.docker images -q 									(it will show only imageid)
+10.docker ps -aq									( it will show containeris only)
+11.docker rmi <image-id>								(it will remove the images)
+12.docker rm <conatiner-id>								(it will remove the containers)
+     docker rm -f $(docker ps -aq)
+=====================================================================================================================
+1.docker container run ubuntu:16.04 /bin/echo 'Hello world' / docker run ubuntu /bin/echo 'Hello world'	(directly we are run the contianers )
+=====================================================================================================================
+1.docker run postgres:9.6.5								(both container and image will create)
+   docker run redis:4.0
+   docker run redis	
+2.docker exec -it 6affd6ded9da{conatiner name} /bin/bash 					(going inside the container)
+3. Example :
+root@6affd6ded9da:/data# ls
+root@6affd6ded9da:/data# pwd
+/data
+root@6affd6ded9da:/data# cd /
+root@6affd6ded9da:/# ls
+bin  boot  data  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@6affd6ded9da:/# env
+....
+..
+=====================================================================================================================

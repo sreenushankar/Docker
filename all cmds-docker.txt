@@ -1,0 +1,1646 @@
+
+----->	docker build -t sreeni{image name} -f Dockerfile1.txt . (or) docker pull ubuntu/aphine/sreeni/anything {image name}
+----->	docker run -it --name sreeni1 sreeni{image name} (or) docker run {image name}
+----->	docker ps (docker ps is used for checking the running container)
+----->	docker ps -a(docker ps is used for checking the running container for all)
+----->	docker ps -aq	( it will show containeris only)
+----->	docker images -q 		(it will show only imageid)
+====================================================================================================================
+ -- >		docker images
+	1.  docker pull ubuntu (pulling ubuntu locally- installing ubuntu)
+	2.docker run -it ubuntu /bin/bash (or) docker run -it ubuntu
+	3.docker ps (docker ps is used for checking the running container)
+	4.docker ps -a(docker ps is used for checking the running container for all)
+	5.docker run -it --name sreeni ubuntu /bin/bash  (or) docker run -it --name sreeni ubuntu  (when i need to change name/ naming )
+	6.docker start sreeni - (starting the container )
+	7.docker attach sreeni - ( is used for go that container )
+		- cat /etc/os-release - (is used to check to latest version and other details)
+	8.docker stop sreeni - (stoping the container )
+	Note : if we need to delete container then first we need stop container then you need delete.
+	9.docker rm sreeni
+
+============================================
+
+1.docker build -t sreeni{ name of docker} -f Dockerfile.txt .
+2.docker images
+3.docker run -it sreeni-test
+
+=================================================================================================================
+--> 
+C:\Users\000Z9H744>docker --version
+Docker version 20.10.14, build a224086
+
+C:\Users\000Z9H744>docker version
+Client:
+ Cloud integration: v1.0.24
+ Version:           20.10.14
+ API version:       1.41
+ Go version:        go1.16.15
+ Git commit:        a224086
+ Built:             Thu Mar 24 01:53:11 2022
+ OS/Arch:           windows/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Desktop 4.8.2 (79419)
+ Engine:
+  Version:          20.10.14
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.15
+  Git commit:       87a90dc
+  Built:            Thu Mar 24 01:46:14 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.5.11
+  GitCommit:        3df54a852345ae127d1fa3092b95168e4a88e2f8
+ runc:
+  Version:          1.0.3
+  GitCommit:        v1.0.3-0-gf46b6ba
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+===============================================================================================================
+(what ever the images are there in docker it will show..)
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG           IMAGE ID       CREATED         SIZE
+registry     latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine       latest        e66264b98777   6 weeks ago     5.53MB
+docker       stable-dind   6f19136cf89d   19 months ago   235MB
+docker       stable        b0757c55a1fd   19 months ago   220MB
+
+====================================================================================================================
+
+C:\Users\000Z9H744>docker search ubuntu
+NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   14536     [OK]
+websphere-liberty                WebSphere Liberty multi-architecture images …   286       [OK]
+ubuntu-upstart                   DEPRECATED, as is Upstart (find other proces…   112       [OK]
+neurodebian                      NeuroDebian provides neuroscience research s…   91        [OK]
+open-liberty                     Open Liberty multi-architecture images based…   53        [OK]
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   52
+ubuntu-debootstrap               DEPRECATED; use "ubuntu" instead                46        [OK]
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   36
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   34
+kasmweb/ubuntu-bionic-desktop    Ubuntu productivity desktop for Kasm Workspa…   29
+ubuntu/prometheus                Prometheus is a systems and service monitori…   27
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   25
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   22
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   17
+ubuntu/redis                     Redis, an open source key-value store. Long-…   10
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   6
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   6
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   6
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5
+ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…   4
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   4
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   3
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2
+bitnami/ubuntu-base-buildpack    Ubuntu base compilation image                   2                    [OK]
+ubuntu/loki                      Grafana Loki, a log aggregation system like …   0
+
+
+==================================================================================================================
+(pulling the docker image from docker hub)
+
+C:\Users\000Z9H744>docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+405f018f9d1d: Pull complete
+Digest: sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+
+(the image is pulled with 27941809078c id and size 77.8MB)
+
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG           IMAGE ID       CREATED         SIZE
+ubuntu       latest        27941809078c   4 weeks ago     77.8MB
+registry     latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine       latest        e66264b98777   6 weeks ago     5.53MB
+docker       stable-dind   6f19136cf89d   19 months ago   235MB
+docker       stable        b0757c55a1fd   19 months ago   220MB
+
+====================================================================================================================
+
+C:\Users\000Z9H744>docker run -it ubuntu /bin/bash
+root@93135f55c70c:/# ll
+total 56
+drwxr-xr-x   1 root root 4096 Jul  5 07:16 ./
+drwxr-xr-x   1 root root 4096 Jul  5 07:16 ../
+-rwxr-xr-x   1 root root    0 Jul  5 07:16 .dockerenv*
+lrwxrwxrwx   1 root root    7 May 31 15:42 bin -> usr/bin/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 boot/
+drwxr-xr-x   5 root root  360 Jul  5 07:16 dev/
+drwxr-xr-x   1 root root 4096 Jul  5 07:16 etc/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 home/
+lrwxrwxrwx   1 root root    7 May 31 15:42 lib -> usr/lib/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib32 -> usr/lib32/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib64 -> usr/lib64/
+lrwxrwxrwx   1 root root   10 May 31 15:42 libx32 -> usr/libx32/
+drwxr-xr-x   2 root root 4096 May 31 15:42 media/
+drwxr-xr-x   2 root root 4096 May 31 15:42 mnt/
+drwxr-xr-x   2 root root 4096 May 31 15:42 opt/
+dr-xr-xr-x 231 root root    0 Jul  5 07:16 proc/
+drwx------   2 root root 4096 May 31 15:45 root/
+drwxr-xr-x   5 root root 4096 May 31 15:45 run/
+lrwxrwxrwx   1 root root    8 May 31 15:42 sbin -> usr/sbin/
+drwxr-xr-x   2 root root 4096 May 31 15:42 srv/
+dr-xr-xr-x  11 root root    0 Jul  5 07:16 sys/
+drwxrwxrwt   2 root root 4096 May 31 15:45 tmp/
+drwxr-xr-x  14 root root 4096 May 31 15:42 usr/
+drwxr-xr-x  11 root root 4096 May 31 15:45 var/
+root@93135f55c70c:/#
+
+
+=====================================================================================================================
+
+(docker ps is used for checking the running container..)
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+(docker ps is used for checking the running container for all..)
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                          PORTS     NAMES
+c6f697c6d35e   ubuntu               "/bin/bash"              3 minutes ago    Exited (0) About a minute ago             kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              6 minutes ago    Exited (0) 4 minutes ago                  hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              13 minutes ago   Exited (0) 11 minutes ago                 dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              22 minutes ago   Exited (0) 14 minutes ago                 goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   5 days ago       Exited (255) 5 days ago                   condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   5 days ago       Exited (127) 5 days ago                   dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   5 days ago       Exited (255) 5 days ago                   registry
+0510b1231663   alpine               "sleep 3600"             5 days ago       Exited (255) 5 days ago                   mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   5 days ago       Exited (255) 5 days ago                   container-name
+
+(when i need to change name/ naming the name)
+C:\Users\000Z9H744>docker run -it --name sreeni ubuntu /bin/bash
+root@c21077a40b6e:/# exit
+exit
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                      PORTS     NAMES
+c21077a40b6e   ubuntu               "/bin/bash"              9 seconds ago    Exited (0) 3 seconds ago              sreeni
+c6f697c6d35e   ubuntu               "/bin/bash"              6 minutes ago    Exited (0) 4 minutes ago              kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              9 minutes ago    Exited (0) 7 minutes ago              hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              15 minutes ago   Exited (0) 14 minutes ago             dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              24 minutes ago   Exited (0) 17 minutes ago             goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   5 days ago       Exited (255) 5 days ago               condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   5 days ago       Exited (127) 5 days ago               dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   5 days ago       Exited (255) 5 days ago               registry
+0510b1231663   alpine               "sleep 3600"             5 days ago       Exited (255) 5 days ago               mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   5 days ago       Exited (255) 5 days ago               container-name
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED              STATUS                          PORTS     NAMES
+c21077a40b6e   ubuntu               "/bin/bash"              About a minute ago   Exited (0) About a minute ago             sreeni
+c6f697c6d35e   ubuntu               "/bin/bash"              8 minutes ago        Exited (0) 5 minutes ago                  kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              11 minutes ago       Exited (0) 8 minutes ago                  hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              17 minutes ago       Exited (0) 15 minutes ago                 dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              26 minutes ago       Exited (0) 19 minutes ago                 goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   5 days ago           Exited (255) 5 days ago                   condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   5 days ago           Exited (127) 5 days ago                   dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   5 days ago           Exited (255) 5 days ago                   registry
+0510b1231663   alpine               "sleep 3600"             5 days ago           Exited (255) 5 days ago                   mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   5 days ago           Exited (255) 5 days ago                   container-name
+
+
+====================================================================================================================
+(starting the container)
+C:\Users\000Z9H744>docker start sreeni
+sreeni
+
+C:\Users\000Z9H744>docker attach sreeni
+root@c21077a40b6e:/# cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@c21077a40b6e:/# exit
+exit
+
+====================================================================================================================
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+c21077a40b6e   ubuntu    "/bin/bash"   6 minutes ago   Up 5 seconds             sreeni
+
+C:\Users\000Z9H744>docker stop sreeni
+sreeni
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744>docker start sreeni
+sreeni
+
+(if you need to remove the container then first we need to stop container then we can remove the container )
+C:\Users\000Z9H744>docker rm sreeni
+Error response from daemon: You cannot remove a running container c21077a40b6ecd0d4b333134f291975bc44e695f84413e7d2dee2f09bf68249d. Stop the container before attempting removal or force remove
+
+C:\Users\000Z9H744>docker stop sreeni
+sreeni
+
+C:\Users\000Z9H744>docker rm sreeni
+sreeni
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                      PORTS     NAMES
+c6f697c6d35e   ubuntu               "/bin/bash"              14 minutes ago   Exited (0) 11 minutes ago             kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              17 minutes ago   Exited (0) 14 minutes ago             hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 minutes ago   Exited (0) 22 minutes ago             dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              32 minutes ago   Exited (0) 25 minutes ago             goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   5 days ago       Exited (255) 5 days ago               condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   5 days ago       Exited (127) 5 days ago               dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   5 days ago       Exited (255) 5 days ago               registry
+0510b1231663   alpine               "sleep 3600"             5 days ago       Exited (255) 5 days ago               mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   5 days ago       Exited (255) 5 days ago               container-name
+
+===================================================================================================================
+
+docker build -t chaicho1-test -f Dockerfile.txt . 									(main)
+ docker build -t ubuntu .
+
+===================================================================================================================
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+05-07-2022  15:22    <DIR>          .
+05-07-2022  15:22    <DIR>          ..
+05-07-2022  15:24                38 Dockerfile.txt
+05-07-2022  13:30            14,686 New Text Document.txt
+               2 File(s)         14,724 bytes
+               2 Dir(s)  151,962,349,568 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t chaicho1-test -f Dockerfile.txt .
+[+] Building 0.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                           0.0s
+ => => transferring dockerfile: 79B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                   0.0s
+ => [1/2] FROM docker.io/library/ubuntu                                                                            0.0s
+ => [2/2] RUN echo "hello machine!"                                                                                0.5s
+ => exporting to image                                                                                             0.1s
+ => => exporting layers                                                                                            0.1s
+ => => writing image sha256:dd39597eaf8b363dbaa00a9f07bed6b3d19d96c999995f36b240936a9fbf0466                       0.0s
+ => => naming to docker.io/library/chaicho1-test                                                                   0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED              SIZE
+chaicho1-test   latest        dd39597eaf8b   About a minute ago   77.8MB
+ubuntu          latest        27941809078c   4 weeks ago          77.8MB
+registry        latest        773dbf02e42e   5 weeks ago          24.1MB
+alpine          latest        e66264b98777   6 weeks ago          5.53MB
+docker          stable-dind   6f19136cf89d   19 months ago        235MB
+docker          stable        b0757c55a1fd   19 months ago        220MB
+
+====================================================================================================================
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t sreeni-test -f Dockerfile.txt .
+[+] Building 0.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                           0.0s
+ => => transferring dockerfile: 95B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                   0.0s
+ => CACHED [1/2] FROM docker.io/library/ubuntu                                                                     0.0s
+ => [2/2] RUN echo "hellomachine!"  > /tmp/testfile                                                                0.6s
+ => exporting to image                                                                                             0.1s
+ => => exporting layers                                                                                            0.1s
+ => => writing image sha256:2f7c5c60988e852160db93a79198e44c228b893b39864d40c720cbadd49db6be                       0.0s
+ => => naming to docker.io/library/sreeni-test                                                                     0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+05-07-2022  15:22    <DIR>          .
+05-07-2022  15:22    <DIR>          ..
+05-07-2022  15:33                54 Dockerfile.txt
+05-07-2022  13:30            14,686 New Text Document.txt
+               2 File(s)         14,740 bytes
+               2 Dir(s)  151,953,887,232 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED          SIZE
+sreeni-test     latest        2f7c5c60988e   20 seconds ago   77.8MB
+chaicho1-test   latest        dd39597eaf8b   8 minutes ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago      77.8MB
+registry        latest        773dbf02e42e   5 weeks ago      24.1MB
+alpine          latest        e66264b98777   6 weeks ago      5.53MB
+docker          stable-dind   6f19136cf89d   19 months ago    235MB
+docker          stable        b0757c55a1fd   19 months ago    220MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it sreeni-test
+root@bb4b8a9107b8:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@bb4b8a9107b8:/# cd tmp/
+root@bb4b8a9107b8:/tmp# ls
+testfile
+root@bb4b8a9107b8:/tmp# exit
+exit
+==================================================================================================================
+
+
+docker container run ubuntu:16.04 /bin/echo 'Hello world'
+docker container run ubuntu /bin/echo 'Hello world'
+docker  run ubuntu /bin/echo 'Hello world'
+
+=====================================================================================================================
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -aq	( it will show containeris only)
+a411cceeec22
+cd4761efba8a
+8f92d39cb492
+f8362f9bd703
+8d79e8bc9f16
+fb8c76db2d52
+f199f465b09d
+ab5b95d7b44a
+981f6784808e
+34577399b0b2
+==========================================================================================
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images -q 		(it will show only imageid)
+82e5049a5bfb
+2f7c5c60988e
+dd39597eaf8b
+27941809078c
+773dbf02e42e
+f3eab0375c00
+e66264b98777
+b6f507652425
+6f19136cf89d
+b0757c55a1fd
+
+===============================================================================================================
+
+(deleting all docker images)
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rmi -f  82e5049a5bfb 2f7c5c60988e dd39597eaf8b 27941809078c 773dbf02e42e f3eab0375c00 e66264b98777 b6f507652425 6f19136cf89d b0757c55a1fd
+Untagged: sreeni-test:latest
+Deleted: sha256:82e5049a5bfbfb514a45f6bf68015767bdd9211ab38e9e8f8eccce48cb78c6b6
+Deleted: sha256:2f7c5c60988e852160db93a79198e44c228b893b39864d40c720cbadd49db6be
+Untagged: chaicho1-test:latest
+Deleted: sha256:dd39597eaf8b363dbaa00a9f07bed6b3d19d96c999995f36b240936a9fbf0466
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+Deleted: sha256:27941809078cc9b2802deb2b0bb6feed6c236cde01e487f200e24653533701ee
+Untagged: registry:latest
+Untagged: registry@sha256:bedef0f1d248508fe0a16d2cacea1d2e68e899b2220e2258f1b604e1f327d475
+Deleted: sha256:773dbf02e42e2691c752b74e9b7745623c4279e4eeefe734804a32695e46e2f3
+Untagged: chaicho1-1:latest
+Deleted: sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af
+Untagged: alpine:latest
+Untagged: alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c
+Deleted: sha256:e66264b98777e12192600bf9b4d663655c98a090072e1bab49e233d7531d1294
+Untagged: ubuntu:16.04
+Untagged: ubuntu@sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61
+Deleted: sha256:b6f50765242581c887ff1acc2511fa2d885c52d8fb3ac8c4bba131fd86567f2e
+Untagged: docker:stable-dind
+Untagged: docker@sha256:4972457c6a8a4309f9796fc3c8fd288923045ba0e214c102d92b70be99e249d1
+Deleted: sha256:6f19136cf89d49aee8fa560eaab20e034c6ee17bbce55a9d33e1fbe5baa35b03
+Untagged: docker:stable
+Untagged: docker@sha256:fd4d028713fd05a1fb896412805daed82c4a0cc84331d8dad00cb596d7ce3e3a
+Deleted: sha256:b0757c55a1fdbb59c378fd34dde3e12bd25f68094dd69546cf5ca00ddbaa7a33
+
+=====================================================================================================================
+(deleting all containers)
+PS C:\Users\000Z9H744> docker rm -f $(docker ps -aq)
+e179094e2629
+372ef665d4c6
+42c54e634419
+a411cceeec22
+cd4761efba8a
+8f92d39cb492
+f8362f9bd703
+8d79e8bc9f16
+fb8c76db2d52
+f199f465b09d
+ab5b95d7b44a
+981f6784808e
+34577399b0b2
+7d3fb11458a0
+96d05098bac2
+1bf4e51b33d5
+dee454d24817
+1d9c4d54f6af
+47e1618b04a3
+450a2d385123
+0d5f0950e1dc
+e42cd3e24c8a
+83c8e78a7b52
+170c544d79e7
+49e1d4413723
+3960ade1585d
+bb4b8a9107b8
+9b63f3a8c3ea
+50a78b32cd10
+a8157997e63c
+c6f697c6d35e
+1386034dbeec
+4fcdf1bf2f5f
+93135f55c70c
+8ba21d8719e3
+73482d3774b6
+c5e08cd3a40f
+0510b1231663
+057212e44cf4
+=================================================================================================================
+
+docker images
+	1.  docker pull ubuntu (pulling ubuntu locally- installing ubuntu)
+	2.docker run -it ubuntu /bin/bash (or) docker run -it ubuntu
+	3.docker ps (docker ps is used for checking the running container)
+	4.docker ps -a(docker ps is used for checking the running container for all)
+	5.docker run -it --name sreeni ubuntu /bin/bash  (or) docker run -it --name sreeni ubuntu  (when i need to change name/ naming )
+	6.docker start sreeni - (starting the container )
+	7.docker attach sreeni - ( is used for go that container )
+		- cat /etc/os-release - (is used to check to latest version and other details)
+	8.docker stop sreeni - (stoping the container )
+	Note : if we need to delete container then first we need stop container then you need delete.
+	9.docker rm sreeni
+
+============================================
+
+1.docker build -t sreeni{ name of docker} -f Dockerfile.txt .
+2.docker images
+3.docker run -it sreeni-test
+
+---------------------------------------------------------------------------------------------
+1.how to build a docker file or container file ?
+A) docker build -t sreeni{ name of docker} -f Dockerfile.txt .( file name)
+
+2.how to create a container from image ?
+A) docker run -it ubuntu (or) docker run -it ubuntu /bin/bash  (or) docker run <imageid>
+
+3.how to check the logs for created container ?
+A)docker ps (docker ps is used for checking the running container)  (or )docker ps -a(docker ps is used for checking the running container for all)
+
+4.how to check status of the container ?
+A)docker ps
+
+5.what are the diff status of container ?
+A)docker ps -a
+
+6.how to login into container created ?
+A)
+
+7.how to tag a registry name to current build image ?
+A)docker tag ubuntu:latest ubuntu:myubuntu {in the place of tag myubuntu will come}
+
+8.how to login to registry ?
+A)
+
+9.how to pull image ?
+A)docker pull ubuntu
+
+10.how to push image ?
+A)
+
+11.what is registry ?
+A)
+
+12.what are public and private registry ?
+A)
+1.what ever we'r created in local( from hub.docker.com ) is called public registry.
+2.what ever we'r created in amazon,docker which are private to use that are private registry.
+
+13.in how many ways we can login to diff registries ?
+A)
+
+14.what is -it ?
+A)
+
+15.what is -qa ?
+A)
+
+
+
+
+
+=====================================================================================================================
+
+Microsoft Windows [Version 10.0.19044.1766]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\000Z9H744>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED         SIZE
+sreeni-test     latest        82e5049a5bfb   19 hours ago    77.8MB
+<none>          <none>        2f7c5c60988e   20 hours ago    77.8MB
+chaicho1-test   latest        dd39597eaf8b   20 hours ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago     77.8MB
+registry        latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine          latest        e66264b98777   6 weeks ago     5.53MB
+docker          stable-dind   6f19136cf89d   19 months ago   235MB
+docker          stable        b0757c55a1fd   19 months ago   220MB
+
+C:\Users\000Z9H744>docker run -it sreeni-test
+root@7d3fb11458a0:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@7d3fb11458a0:/# docker ps
+bash: docker: command not found
+root@7d3fb11458a0:/# ll
+total 56
+drwxr-xr-x   1 root root 4096 Jul  6 05:35 ./
+drwxr-xr-x   1 root root 4096 Jul  6 05:35 ../
+-rwxr-xr-x   1 root root    0 Jul  6 05:35 .dockerenv*
+lrwxrwxrwx   1 root root    7 May 31 15:42 bin -> usr/bin/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 boot/
+drwxr-xr-x   5 root root  360 Jul  6 05:35 dev/
+drwxr-xr-x   1 root root 4096 Jul  6 05:35 etc/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 home/
+lrwxrwxrwx   1 root root    7 May 31 15:42 lib -> usr/lib/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib32 -> usr/lib32/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib64 -> usr/lib64/
+lrwxrwxrwx   1 root root   10 May 31 15:42 libx32 -> usr/libx32/
+drwxr-xr-x   2 root root 4096 May 31 15:42 media/
+drwxr-xr-x   2 root root 4096 May 31 15:42 mnt/
+drwxr-xr-x   2 root root 4096 May 31 15:42 opt/
+dr-xr-xr-x 228 root root    0 Jul  6 05:35 proc/
+drwx------   2 root root 4096 May 31 15:45 root/
+drwxr-xr-x   5 root root 4096 May 31 15:45 run/
+lrwxrwxrwx   1 root root    8 May 31 15:42 sbin -> usr/sbin/
+drwxr-xr-x   2 root root 4096 May 31 15:42 srv/
+dr-xr-xr-x  11 root root    0 Jul  6 05:35 sys/
+drwxrwxrwt   1 root root 4096 Jul  5 10:26 tmp/
+drwxr-xr-x  14 root root 4096 May 31 15:42 usr/
+drwxr-xr-x  11 root root 4096 May 31 15:45 var/
+root@7d3fb11458a0:/# echo
+
+root@7d3fb11458a0:/# exit
+exit
+
+C:\Users\000Z9H744>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\000Z9H744>ll
+'ll' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED              STATUS                      PORTS     NAMES
+7d3fb11458a0   sreeni-test          "bash"                   About a minute ago   Exited (0) 23 seconds ago             great_gates
+96d05098bac2   ubuntu               "bash"                   18 hours ago         Exited (0) 18 hours ago               suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   18 hours ago         Exited (0) 18 hours ago               crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   18 hours ago         Exited (1) 18 hours ago               adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   18 hours ago         Exited (0) 18 hours ago               lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   18 hours ago         Exited (0) 18 hours ago               fervent_villani
+450a2d385123   sreeni-test          "bash"                   18 hours ago         Exited (0) 18 hours ago               objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago         Exited (1) 19 hours ago               admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   19 hours ago         Exited (137) 19 hours ago             hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   19 hours ago         Exited (1) 19 hours ago               eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   19 hours ago         Exited (0) 19 hours ago               exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   19 hours ago         Exited (1) 19 hours ago               strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   19 hours ago         Exited (1) 19 hours ago               naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago         Exited (0) 20 hours ago               peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago         Exited (0) 20 hours ago               competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago         Exited (0) 20 hours ago               frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago         Exited (0) 20 hours ago               quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago         Exited (0) 22 hours ago               kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              22 hours ago         Exited (0) 22 hours ago               hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              22 hours ago         Exited (0) 22 hours ago               dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              22 hours ago         Exited (0) 22 hours ago               goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago           Exited (255) 6 days ago               condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago           Exited (127) 6 days ago               dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago           Exited (255) 6 days ago               registry
+0510b1231663   alpine               "sleep 3600"             6 days ago           Exited (255) 6 days ago               mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago           Exited (255) 6 days ago               container-name
+
+C:\Users\000Z9H744>docker container run ubuntu:16.04 /bin/echo 'Hello world'
+Unable to find image 'ubuntu:16.04' locally
+16.04: Pulling from library/ubuntu
+58690f9b18fc: Pull complete
+b51569e7c507: Pull complete
+da8ef40b9eca: Pull complete
+fb15d46c38dc: Pull complete
+Digest: sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61
+Status: Downloaded newer image for ubuntu:16.04
+'Hello world'
+
+C:\Users\000Z9H744>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED         SIZE
+sreeni-test     latest        82e5049a5bfb   19 hours ago    77.8MB
+<none>          <none>        2f7c5c60988e   20 hours ago    77.8MB
+chaicho1-test   latest        dd39597eaf8b   20 hours ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago     77.8MB
+registry        latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine          latest        e66264b98777   6 weeks ago     5.53MB
+ubuntu          16.04         b6f507652425   10 months ago   135MB
+docker          stable-dind   6f19136cf89d   19 months ago   235MB
+docker          stable        b0757c55a1fd   19 months ago   220MB
+
+C:\Users\000Z9H744>docker container run ubuntu /bin/echo 'Hello world'
+'Hello world'
+
+C:\Users\000Z9H744>docker run ubuntu /bin/echo 'Hello world'
+'Hello world'
+
+C:\Users\000Z9H744>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744
+
+06-06-2022  14:32    <DIR>          .
+06-06-2022  14:32    <DIR>          ..
+27-04-2022  10:56    <DIR>          .bluemix
+23-04-2022  11:57    <DIR>          .cisco
+04-07-2022  15:27    <DIR>          .docker
+21-06-2022  12:03    <DIR>          .kube
+28-06-2022  10:26    <DIR>          .VirtualBox
+23-04-2022  11:50    <DIR>          3D Objects
+23-04-2022  11:50    <DIR>          Contacts
+06-07-2022  11:03    <DIR>          Desktop
+28-06-2022  15:04    <DIR>          Documents
+01-07-2022  11:02    <DIR>          Downloads
+23-04-2022  11:50    <DIR>          Favorites
+27-04-2022  11:07        47,827,456 kubectl.exe
+23-04-2022  11:50    <DIR>          Links
+23-04-2022  11:50    <DIR>          Music
+23-04-2022  11:57    <DIR>          OneDrive
+24-06-2022  13:12    <DIR>          Pictures
+23-04-2022  11:50    <DIR>          Saved Games
+23-04-2022  11:57    <DIR>          Searches
+31-05-2022  13:00    <DIR>          Tracing
+27-04-2022  09:45    <DIR>          Videos
+06-06-2022  14:41    <DIR>          VirtualBox VMs
+               1 File(s)     47,827,456 bytes
+              22 Dir(s)  151,326,121,984 bytes free
+
+C:\Users\000Z9H744>cd C:\Users\000Z9H744\Desktop\DockerFiles
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+05-07-2022  15:22    <DIR>          .
+05-07-2022  15:22    <DIR>          ..
+05-07-2022  17:18                43 Dockerfile.txt
+06-07-2022  11:08            21,783 New Text Document.txt
+               2 File(s)         21,826 bytes
+               2 Dir(s)  151,324,876,800 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED         SIZE
+sreeni-test     latest        82e5049a5bfb   19 hours ago    77.8MB
+<none>          <none>        2f7c5c60988e   20 hours ago    77.8MB
+chaicho1-test   latest        dd39597eaf8b   20 hours ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago     77.8MB
+registry        latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine          latest        e66264b98777   6 weeks ago     5.53MB
+ubuntu          16.04         b6f507652425   10 months ago   135MB
+docker          stable-dind   6f19136cf89d   19 months ago   235MB
+docker          stable        b0757c55a1fd   19 months ago   220MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it sreeni-test
+root@f199f465b09d:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@f199f465b09d:/# echo
+
+root@f199f465b09d:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it ubuntu
+root@fb8c76db2d52:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@fb8c76db2d52:/# echo
+
+root@fb8c76db2d52:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED         SIZE
+sreeni-test     latest        82e5049a5bfb   19 hours ago    77.8MB
+<none>          <none>        2f7c5c60988e   20 hours ago    77.8MB
+chaicho1-test   latest        dd39597eaf8b   20 hours ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago     77.8MB
+registry        latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine          latest        e66264b98777   6 weeks ago     5.53MB
+ubuntu          16.04         b6f507652425   10 months ago   135MB
+docker          stable-dind   6f19136cf89d   19 months ago   235MB
+docker          stable        b0757c55a1fd   19 months ago   220MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it sreeni-test
+root@8d79e8bc9f16:/# /bin/echo
+
+root@8d79e8bc9f16:/# echo
+
+root@8d79e8bc9f16:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker container run ubuntu /bin/echo 'Hello world'
+'Hello world'
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run ubuntu /bin/echo 'Hello world'
+'Hello world'
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run ubuntu
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it ubuntu
+root@a411cceeec22:/# echo
+
+root@a411cceeec22:/# /bin/echo
+
+root@a411cceeec22:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                      PORTS     NAMES
+a411cceeec22   ubuntu               "bash"                   2 minutes ago    Exited (0) 11 seconds ago             musing_wing
+cd4761efba8a   ubuntu               "bash"                   2 minutes ago    Exited (0) 2 minutes ago              eloquent_yonath
+8f92d39cb492   ubuntu               "/bin/echo 'Hello wo…"   2 minutes ago    Exited (0) 2 minutes ago              nervous_cerf
+f8362f9bd703   ubuntu               "/bin/echo 'Hello wo…"   2 minutes ago    Exited (0) 2 minutes ago              modest_chatterjee
+8d79e8bc9f16   sreeni-test          "bash"                   3 minutes ago    Exited (0) 3 minutes ago              jovial_shockley
+fb8c76db2d52   ubuntu               "bash"                   9 minutes ago    Exited (0) 5 minutes ago              beautiful_hertz
+f199f465b09d   sreeni-test          "bash"                   13 minutes ago   Exited (0) 9 minutes ago              vigilant_raman
+ab5b95d7b44a   ubuntu               "/bin/echo 'Hello wo…"   14 minutes ago   Exited (0) 14 minutes ago             quizzical_keldysh
+981f6784808e   ubuntu               "/bin/echo 'Hello wo…"   15 minutes ago   Exited (0) 15 minutes ago             objective_hawking
+34577399b0b2   ubuntu:16.04         "/bin/echo 'Hello wo…"   16 minutes ago   Exited (0) 15 minutes ago             musing_hopper
+7d3fb11458a0   sreeni-test          "bash"                   22 minutes ago   Exited (0) 21 minutes ago             great_gates
+96d05098bac2   ubuntu               "bash"                   18 hours ago     Exited (0) 18 hours ago               suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   18 hours ago     Exited (0) 18 hours ago               crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   19 hours ago     Exited (1) 18 hours ago               adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago               lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago               fervent_villani
+450a2d385123   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago               objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago               admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   20 hours ago     Exited (137) 19 hours ago             hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   20 hours ago     Exited (1) 20 hours ago               eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago               exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 19 hours ago               strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago               naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago               peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago               competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago               frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago               quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago               kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago               hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago               dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago               goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago       Exited (255) 6 days ago               condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago       Exited (127) 6 days ago               dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago       Exited (255) 6 days ago               registry
+0510b1231663   alpine               "sleep 3600"             6 days ago       Exited (255) 6 days ago               mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago       Exited (255) 6 days ago               container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start musing_wing
+musing_wing
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it ubuntu
+root@c0b8cde8e356:/# echo
+
+root@c0b8cde8e356:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS          PORTS     NAMES
+a411cceeec22   ubuntu    "bash"    3 minutes ago   Up 33 seconds             musing_wing
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker stop musing_wing
+musing_wing
+
+C:\Users\000Z9H744\Desktop\DockerFiles>ps
+'ps' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                       PORTS     NAMES
+c0b8cde8e356   ubuntu               "bash"                   51 seconds ago   Exited (0) 40 seconds ago              wonderful_blackburn
+a411cceeec22   ubuntu               "bash"                   3 minutes ago    Exited (137) 9 seconds ago             musing_wing
+cd4761efba8a   ubuntu               "bash"                   3 minutes ago    Exited (0) 3 minutes ago               eloquent_yonath
+8f92d39cb492   ubuntu               "/bin/echo 'Hello wo…"   3 minutes ago    Exited (0) 3 minutes ago               nervous_cerf
+f8362f9bd703   ubuntu               "/bin/echo 'Hello wo…"   4 minutes ago    Exited (0) 4 minutes ago               modest_chatterjee
+8d79e8bc9f16   sreeni-test          "bash"                   4 minutes ago    Exited (0) 4 minutes ago               jovial_shockley
+fb8c76db2d52   ubuntu               "bash"                   11 minutes ago   Exited (0) 6 minutes ago               beautiful_hertz
+f199f465b09d   sreeni-test          "bash"                   14 minutes ago   Exited (0) 11 minutes ago              vigilant_raman
+ab5b95d7b44a   ubuntu               "/bin/echo 'Hello wo…"   16 minutes ago   Exited (0) 16 minutes ago              quizzical_keldysh
+981f6784808e   ubuntu               "/bin/echo 'Hello wo…"   16 minutes ago   Exited (0) 16 minutes ago              objective_hawking
+34577399b0b2   ubuntu:16.04         "/bin/echo 'Hello wo…"   17 minutes ago   Exited (0) 17 minutes ago              musing_hopper
+7d3fb11458a0   sreeni-test          "bash"                   24 minutes ago   Exited (0) 22 minutes ago              great_gates
+96d05098bac2   ubuntu               "bash"                   18 hours ago     Exited (0) 18 hours ago                suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   19 hours ago     Exited (0) 18 hours ago                crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago                fervent_villani
+450a2d385123   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   20 hours ago     Exited (137) 19 hours ago              hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   20 hours ago     Exited (1) 20 hours ago                eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 19 hours ago                strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago                naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago       Exited (255) 6 days ago                condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago       Exited (127) 6 days ago                dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago       Exited (255) 6 days ago                registry
+0510b1231663   alpine               "sleep 3600"             6 days ago       Exited (255) 6 days ago                mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago       Exited (255) 6 days ago                container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rm wonderful_blackburn
+wonderful_blackburn
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                            PORTS     NAMES
+a411cceeec22   ubuntu               "bash"                   4 minutes ago    Exited (137) About a minute ago             musing_wing
+cd4761efba8a   ubuntu               "bash"                   4 minutes ago    Exited (0) 4 minutes ago                    eloquent_yonath
+8f92d39cb492   ubuntu               "/bin/echo 'Hello wo…"   4 minutes ago    Exited (0) 4 minutes ago                    nervous_cerf
+f8362f9bd703   ubuntu               "/bin/echo 'Hello wo…"   5 minutes ago    Exited (0) 5 minutes ago                    modest_chatterjee
+8d79e8bc9f16   sreeni-test          "bash"                   5 minutes ago    Exited (0) 5 minutes ago                    jovial_shockley
+fb8c76db2d52   ubuntu               "bash"                   11 minutes ago   Exited (0) 7 minutes ago                    beautiful_hertz
+f199f465b09d   sreeni-test          "bash"                   15 minutes ago   Exited (0) 12 minutes ago                   vigilant_raman
+ab5b95d7b44a   ubuntu               "/bin/echo 'Hello wo…"   17 minutes ago   Exited (0) 17 minutes ago                   quizzical_keldysh
+981f6784808e   ubuntu               "/bin/echo 'Hello wo…"   17 minutes ago   Exited (0) 17 minutes ago                   objective_hawking
+34577399b0b2   ubuntu:16.04         "/bin/echo 'Hello wo…"   18 minutes ago   Exited (0) 18 minutes ago                   musing_hopper
+7d3fb11458a0   sreeni-test          "bash"                   25 minutes ago   Exited (0) 23 minutes ago                   great_gates
+96d05098bac2   ubuntu               "bash"                   18 hours ago     Exited (0) 18 hours ago                     suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   19 hours ago     Exited (0) 18 hours ago                     crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                     adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                     lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago                     fervent_villani
+450a2d385123   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                     objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                     admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   20 hours ago     Exited (137) 19 hours ago                   hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   20 hours ago     Exited (1) 20 hours ago                     eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                     exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 19 hours ago                     strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago                     naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                     peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                     kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                     hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                     dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                     goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago       Exited (255) 6 days ago                     condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago       Exited (127) 6 days ago                     dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago       Exited (255) 6 days ago                     registry
+0510b1231663   alpine               "sleep 3600"             6 days ago       Exited (255) 6 days ago                     mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago       Exited (255) 6 days ago                     container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                            PORTS     NAMES
+a411cceeec22   ubuntu               "bash"                   4 minutes ago    Exited (137) About a minute ago             musing_wing
+cd4761efba8a   ubuntu               "bash"                   4 minutes ago    Exited (0) 4 minutes ago                    eloquent_yonath
+8f92d39cb492   ubuntu               "/bin/echo 'Hello wo…"   5 minutes ago    Exited (0) 5 minutes ago                    nervous_cerf
+f8362f9bd703   ubuntu               "/bin/echo 'Hello wo…"   5 minutes ago    Exited (0) 5 minutes ago                    modest_chatterjee
+8d79e8bc9f16   sreeni-test          "bash"                   5 minutes ago    Exited (0) 5 minutes ago                    jovial_shockley
+fb8c76db2d52   ubuntu               "bash"                   12 minutes ago   Exited (0) 7 minutes ago                    beautiful_hertz
+f199f465b09d   sreeni-test          "bash"                   15 minutes ago   Exited (0) 12 minutes ago                   vigilant_raman
+ab5b95d7b44a   ubuntu               "/bin/echo 'Hello wo…"   17 minutes ago   Exited (0) 17 minutes ago                   quizzical_keldysh
+981f6784808e   ubuntu               "/bin/echo 'Hello wo…"   17 minutes ago   Exited (0) 17 minutes ago                   objective_hawking
+34577399b0b2   ubuntu:16.04         "/bin/echo 'Hello wo…"   18 minutes ago   Exited (0) 18 minutes ago                   musing_hopper
+7d3fb11458a0   sreeni-test          "bash"                   25 minutes ago   Exited (0) 23 minutes ago                   great_gates
+96d05098bac2   ubuntu               "bash"                   18 hours ago     Exited (0) 18 hours ago                     suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   19 hours ago     Exited (0) 18 hours ago                     crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                     adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                     lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago                     fervent_villani
+450a2d385123   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                     objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                     admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   20 hours ago     Exited (137) 19 hours ago                   hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   20 hours ago     Exited (1) 20 hours ago                     eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                     exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 19 hours ago                     strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago                     naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                     peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                     quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                     kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                     hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                     dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                     goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago       Exited (255) 6 days ago                     condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago       Exited (127) 6 days ago                     dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago       Exited (255) 6 days ago                     registry
+0510b1231663   alpine               "sleep 3600"             6 days ago       Exited (255) 6 days ago                     mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago       Exited (255) 6 days ago                     container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                       PORTS     NAMES
+a411cceeec22   ubuntu               "bash"                   6 minutes ago    Exited (137) 2 minutes ago             musing_wing
+cd4761efba8a   ubuntu               "bash"                   6 minutes ago    Exited (0) 6 minutes ago               eloquent_yonath
+8f92d39cb492   ubuntu               "/bin/echo 'Hello wo…"   6 minutes ago    Exited (0) 6 minutes ago               nervous_cerf
+f8362f9bd703   ubuntu               "/bin/echo 'Hello wo…"   6 minutes ago    Exited (0) 6 minutes ago               modest_chatterjee
+8d79e8bc9f16   sreeni-test          "bash"                   7 minutes ago    Exited (0) 6 minutes ago               jovial_shockley
+fb8c76db2d52   ubuntu               "bash"                   13 minutes ago   Exited (0) 9 minutes ago               beautiful_hertz
+f199f465b09d   sreeni-test          "bash"                   17 minutes ago   Exited (0) 13 minutes ago              vigilant_raman
+ab5b95d7b44a   ubuntu               "/bin/echo 'Hello wo…"   18 minutes ago   Exited (0) 18 minutes ago              quizzical_keldysh
+981f6784808e   ubuntu               "/bin/echo 'Hello wo…"   18 minutes ago   Exited (0) 18 minutes ago              objective_hawking
+34577399b0b2   ubuntu:16.04         "/bin/echo 'Hello wo…"   19 minutes ago   Exited (0) 19 minutes ago              musing_hopper
+7d3fb11458a0   sreeni-test          "bash"                   26 minutes ago   Exited (0) 25 minutes ago              great_gates
+96d05098bac2   ubuntu               "bash"                   19 hours ago     Exited (0) 18 hours ago                suspicious_leavitt
+1bf4e51b33d5   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago                crazy_chandrasekhar
+dee454d24817   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                adoring_curran
+1d9c4d54f6af   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                lucid_ardinghelli
+47e1618b04a3   ubuntu               "bash"                   19 hours ago     Exited (0) 19 hours ago                fervent_villani
+450a2d385123   sreeni-test          "bash"                   19 hours ago     Exited (0) 19 hours ago                objective_curran
+0d5f0950e1dc   sreeni-test          "bash"                   19 hours ago     Exited (1) 19 hours ago                admiring_murdock
+e42cd3e24c8a   sreeni-test          "bash"                   20 hours ago     Exited (137) 19 hours ago              hopeful_dhawan
+83c8e78a7b52   sreeni-test          "bash"                   20 hours ago     Exited (1) 20 hours ago                eloquent_mclaren
+170c544d79e7   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                exciting_chatelet
+49e1d4413723   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago                strange_stonebraker
+3960ade1585d   2f7c5c60988e         "bash"                   20 hours ago     Exited (1) 20 hours ago                naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e         "bash"                   20 hours ago     Exited (0) 20 hours ago                peaceful_bose
+9b63f3a8c3ea   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                competent_khorana
+50a78b32cd10   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                frosty_noether
+a8157997e63c   ubuntu               "bash"                   20 hours ago     Exited (0) 20 hours ago                quizzical_haibt
+c6f697c6d35e   ubuntu               "/bin/bash"              22 hours ago     Exited (0) 22 hours ago                kind_euclid
+1386034dbeec   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 22 hours ago                hardcore_jennings
+4fcdf1bf2f5f   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                dreamy_mclaren
+93135f55c70c   ubuntu               "/bin/bash"              23 hours ago     Exited (0) 23 hours ago                goofy_carver
+8ba21d8719e3   docker:stable        "docker-entrypoint.s…"   6 days ago       Exited (255) 6 days ago                condescending_ritchie
+73482d3774b6   docker:stable-dind   "dockerd-entrypoint.…"   6 days ago       Exited (127) 6 days ago                dind
+c5e08cd3a40f   registry             "/entrypoint.sh /etc…"   6 days ago       Exited (255) 6 days ago                registry
+0510b1231663   alpine               "sleep 3600"             6 days ago       Exited (255) 6 days ago                mypod
+057212e44cf4   alpine               "watch 'date >> /var…"   6 days ago       Exited (255) 6 days ago                container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a q
+"docker ps" accepts no arguments.
+See 'docker ps --help'.
+
+Usage:  docker ps [OPTIONS]
+
+List containers
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -aq
+a411cceeec22
+cd4761efba8a
+8f92d39cb492
+f8362f9bd703
+8d79e8bc9f16
+fb8c76db2d52
+f199f465b09d
+ab5b95d7b44a
+981f6784808e
+34577399b0b2
+7d3fb11458a0
+96d05098bac2
+1bf4e51b33d5
+dee454d24817
+1d9c4d54f6af
+47e1618b04a3
+450a2d385123
+0d5f0950e1dc
+e42cd3e24c8a
+83c8e78a7b52
+170c544d79e7
+49e1d4413723
+3960ade1585d
+bb4b8a9107b8
+9b63f3a8c3ea
+50a78b32cd10
+a8157997e63c
+c6f697c6d35e
+1386034dbeec
+4fcdf1bf2f5f
+93135f55c70c
+8ba21d8719e3
+73482d3774b6
+c5e08cd3a40f
+0510b1231663
+057212e44cf4
+
+C:\Users\000Z9H744\Desktop\DockerFiles> docker rm -f $(docker ps pqa)
+Error: No such container: $(docker
+Error: No such container: ps
+Error: No such container: pqa)
+
+C:\Users\000Z9H744\Desktop\DockerFiles> docker rm -f $(docker ps -qa)
+unknown shorthand flag: 'q' in -qa)
+See 'docker rm --help'.
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+05-07-2022  15:22    <DIR>          .
+05-07-2022  15:22    <DIR>          ..
+05-07-2022  17:18                43 Dockerfile.txt
+06-07-2022  11:24            21,943 New Text Document.txt
+               2 File(s)         21,986 bytes
+               2 Dir(s)  151,317,139,456 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t chaicho1-1 -f Dockerfile.txt .
+[+] Building 0.2s (5/5) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                                                                               0.0s
+ => => transferring dockerfile: 84B                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                                       0.0s
+ => [1/1] FROM docker.io/library/alpine                                                                                                                                0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af                                                                           0.0s
+ => => naming to docker.io/library/chaicho1-1                                                                                                                          0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY      TAG           IMAGE ID       CREATED         SIZE
+sreeni-test     latest        82e5049a5bfb   20 hours ago    77.8MB
+<none>          <none>        2f7c5c60988e   20 hours ago    77.8MB
+chaicho1-test   latest        dd39597eaf8b   20 hours ago    77.8MB
+ubuntu          latest        27941809078c   4 weeks ago     77.8MB
+registry        latest        773dbf02e42e   5 weeks ago     24.1MB
+alpine          latest        e66264b98777   6 weeks ago     5.53MB
+chaicho1-1      latest        f3eab0375c00   6 weeks ago     5.53MB
+ubuntu          16.04         b6f507652425   10 months ago   135MB
+docker          stable-dind   6f19136cf89d   19 months ago   235MB
+docker          stable        b0757c55a1fd   19 months ago   220MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run f3eab0375c00
+Hello Machine!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run 82e
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run 82e5049a5bfb
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rmi -f $(docker images -qa)
+^C
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images -q
+82e5049a5bfb
+2f7c5c60988e
+dd39597eaf8b
+27941809078c
+773dbf02e42e
+f3eab0375c00
+e66264b98777
+b6f507652425
+6f19136cf89d
+b0757c55a1fd
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rmi -f $(docker images -q)
+unknown shorthand flag: 'q' in -q)
+See 'docker rmi --help'.
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rmi -f  82e5049a5bfb 2f7c5c60988e dd39597eaf8b 27941809078c 773dbf02e42e f3eab0375c00 e66264b98777 b6f507652425 6f19136cf89d b0757c55a1fd
+Untagged: sreeni-test:latest
+Deleted: sha256:82e5049a5bfbfb514a45f6bf68015767bdd9211ab38e9e8f8eccce48cb78c6b6
+Deleted: sha256:2f7c5c60988e852160db93a79198e44c228b893b39864d40c720cbadd49db6be
+Untagged: chaicho1-test:latest
+Deleted: sha256:dd39597eaf8b363dbaa00a9f07bed6b3d19d96c999995f36b240936a9fbf0466
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+Deleted: sha256:27941809078cc9b2802deb2b0bb6feed6c236cde01e487f200e24653533701ee
+Untagged: registry:latest
+Untagged: registry@sha256:bedef0f1d248508fe0a16d2cacea1d2e68e899b2220e2258f1b604e1f327d475
+Deleted: sha256:773dbf02e42e2691c752b74e9b7745623c4279e4eeefe734804a32695e46e2f3
+Untagged: chaicho1-1:latest
+Deleted: sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af
+Untagged: alpine:latest
+Untagged: alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c
+Deleted: sha256:e66264b98777e12192600bf9b4d663655c98a090072e1bab49e233d7531d1294
+Untagged: ubuntu:16.04
+Untagged: ubuntu@sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61
+Deleted: sha256:b6f50765242581c887ff1acc2511fa2d885c52d8fb3ac8c4bba131fd86567f2e
+Untagged: docker:stable-dind
+Untagged: docker@sha256:4972457c6a8a4309f9796fc3c8fd288923045ba0e214c102d92b70be99e249d1
+Deleted: sha256:6f19136cf89d49aee8fa560eaab20e034c6ee17bbce55a9d33e1fbe5baa35b03
+Untagged: docker:stable
+Untagged: docker@sha256:fd4d028713fd05a1fb896412805daed82c4a0cc84331d8dad00cb596d7ce3e3a
+Deleted: sha256:b0757c55a1fdbb59c378fd34dde3e12bd25f68094dd69546cf5ca00ddbaa7a33
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                          PORTS     NAMES
+e179094e2629   82e5049a5bfb   "bash"                   About a minute ago   Exited (0) About a minute ago             inspiring_mcnulty
+372ef665d4c6   82e5049a5bfb   "bash"                   About a minute ago   Exited (0) About a minute ago             youthful_williams
+42c54e634419   f3eab0375c00   "echo 'Hello Machine…"   About a minute ago   Exited (0) About a minute ago             thirsty_shamir
+a411cceeec22   27941809078c   "bash"                   9 minutes ago        Exited (137) 5 minutes ago                musing_wing
+cd4761efba8a   27941809078c   "bash"                   9 minutes ago        Exited (0) 9 minutes ago                  eloquent_yonath
+8f92d39cb492   27941809078c   "/bin/echo 'Hello wo…"   9 minutes ago        Exited (0) 9 minutes ago                  nervous_cerf
+f8362f9bd703   27941809078c   "/bin/echo 'Hello wo…"   9 minutes ago        Exited (0) 9 minutes ago                  modest_chatterjee
+8d79e8bc9f16   82e5049a5bfb   "bash"                   10 minutes ago       Exited (0) 10 minutes ago                 jovial_shockley
+fb8c76db2d52   27941809078c   "bash"                   16 minutes ago       Exited (0) 12 minutes ago                 beautiful_hertz
+f199f465b09d   82e5049a5bfb   "bash"                   20 minutes ago       Exited (0) 16 minutes ago                 vigilant_raman
+ab5b95d7b44a   27941809078c   "/bin/echo 'Hello wo…"   21 minutes ago       Exited (0) 21 minutes ago                 quizzical_keldysh
+981f6784808e   27941809078c   "/bin/echo 'Hello wo…"   22 minutes ago       Exited (0) 22 minutes ago                 objective_hawking
+34577399b0b2   b6f507652425   "/bin/echo 'Hello wo…"   23 minutes ago       Exited (0) 23 minutes ago                 musing_hopper
+7d3fb11458a0   82e5049a5bfb   "bash"                   29 minutes ago       Exited (0) 28 minutes ago                 great_gates
+96d05098bac2   27941809078c   "bash"                   19 hours ago         Exited (0) 18 hours ago                   suspicious_leavitt
+1bf4e51b33d5   27941809078c   "bash"                   19 hours ago         Exited (0) 19 hours ago                   crazy_chandrasekhar
+dee454d24817   82e5049a5bfb   "bash"                   19 hours ago         Exited (1) 19 hours ago                   adoring_curran
+1d9c4d54f6af   82e5049a5bfb   "bash"                   19 hours ago         Exited (0) 19 hours ago                   lucid_ardinghelli
+47e1618b04a3   27941809078c   "bash"                   19 hours ago         Exited (0) 19 hours ago                   fervent_villani
+450a2d385123   82e5049a5bfb   "bash"                   19 hours ago         Exited (0) 19 hours ago                   objective_curran
+0d5f0950e1dc   82e5049a5bfb   "bash"                   19 hours ago         Exited (1) 19 hours ago                   admiring_murdock
+e42cd3e24c8a   82e5049a5bfb   "bash"                   20 hours ago         Exited (137) 19 hours ago                 hopeful_dhawan
+83c8e78a7b52   82e5049a5bfb   "bash"                   20 hours ago         Exited (1) 20 hours ago                   eloquent_mclaren
+170c544d79e7   2f7c5c60988e   "bash"                   20 hours ago         Exited (0) 20 hours ago                   exciting_chatelet
+49e1d4413723   2f7c5c60988e   "bash"                   20 hours ago         Exited (1) 20 hours ago                   strange_stonebraker
+3960ade1585d   2f7c5c60988e   "bash"                   20 hours ago         Exited (1) 20 hours ago                   naughty_mirzakhani
+bb4b8a9107b8   2f7c5c60988e   "bash"                   20 hours ago         Exited (0) 20 hours ago                   peaceful_bose
+9b63f3a8c3ea   27941809078c   "bash"                   20 hours ago         Exited (0) 20 hours ago                   competent_khorana
+50a78b32cd10   27941809078c   "bash"                   20 hours ago         Exited (0) 20 hours ago                   frosty_noether
+a8157997e63c   27941809078c   "bash"                   20 hours ago         Exited (0) 20 hours ago                   quizzical_haibt
+c6f697c6d35e   27941809078c   "/bin/bash"              23 hours ago         Exited (0) 22 hours ago                   kind_euclid
+1386034dbeec   27941809078c   "/bin/bash"              23 hours ago         Exited (0) 23 hours ago                   hardcore_jennings
+4fcdf1bf2f5f   27941809078c   "/bin/bash"              23 hours ago         Exited (0) 23 hours ago                   dreamy_mclaren
+93135f55c70c   27941809078c   "/bin/bash"              23 hours ago         Exited (0) 23 hours ago                   goofy_carver
+8ba21d8719e3   b0757c55a1fd   "docker-entrypoint.s…"   6 days ago           Exited (255) 6 days ago                   condescending_ritchie
+73482d3774b6   6f19136cf89d   "dockerd-entrypoint.…"   6 days ago           Exited (127) 6 days ago                   dind
+c5e08cd3a40f   773dbf02e42e   "/entrypoint.sh /etc…"   6 days ago           Exited (255) 6 days ago                   registry
+0510b1231663   e66264b98777   "sleep 3600"             6 days ago           Exited (255) 6 days ago                   mypod
+057212e44cf4   e66264b98777   "watch 'date >> /var…"   6 days ago           Exited (255) 6 days ago                   container-name
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+05-07-2022  15:22    <DIR>          .
+05-07-2022  15:22    <DIR>          ..
+05-07-2022  17:18                43 Dockerfile.txt
+06-07-2022  11:24            21,943 New Text Document.txt
+               2 File(s)         21,986 bytes
+               2 Dir(s)  151,322,980,352 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t test1 -f Dockerfile.txt .
+[+] Building 9.8s (5/5) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                                                                               0.0s
+ => => transferring dockerfile: 35B                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                                       9.6s
+ => CACHED [1/1] FROM docker.io/library/alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c                                                 0.0s
+ => => resolve docker.io/library/alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c                                                        0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af                                                                           0.0s
+ => => naming to docker.io/library/test1                                                                                                                               0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker  images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+test1        latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run f3eab0375c00
+Hello Machine!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rmi -f f3eab0375c00
+Untagged: test1:latest
+Deleted: sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t test1 -f Dockerfile.txt .
+[+] Building 4.1s (5/5) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                                                                               0.0s
+ => => transferring dockerfile: 35B                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                                       4.0s
+ => CACHED [1/1] FROM docker.io/library/alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c                                                 0.0s
+ => => resolve docker.io/library/alpine@sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c                                                        0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af                                                                           0.0s
+ => => naming to docker.io/library/test1                                                                                                                               0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                     PORTS     NAMES
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   7 minutes ago   Exited (0) 7 minutes ago             zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+test1        latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run f3eab0375c00
+Hello Machine!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   41 seconds ago   Exited (0) 39 seconds ago             boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   57 minutes ago   Exited (0) 57 minutes ago             zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>dir
+ Volume in drive C is Windows
+ Volume Serial Number is EE9D-5184
+
+ Directory of C:\Users\000Z9H744\Desktop\DockerFiles
+
+06-07-2022  12:39    <DIR>          .
+06-07-2022  12:39    <DIR>          ..
+05-07-2022  17:18                43 Dockerfile.txt
+06-07-2022  12:39                42 Dockerfile1.txt
+06-07-2022  12:38            25,535 New Text Document.txt
+               3 File(s)         25,620 bytes
+               2 Dir(s)  151,084,814,336 bytes free
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+test1        latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t sreeni_test -f Dockerfile1.txt .
+[+] Building 7.1s (5/5) FINISHED
+ => [internal] load build definition from Dockerfile1.txt                                                                                                              0.0s
+ => => transferring dockerfile: 84B                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                       7.0s
+ => CACHED [1/1] FROM docker.io/library/ubuntu@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac                                                 0.0s
+ => => resolve docker.io/library/ubuntu@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac                                                        0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:812420a75f7b6e95f626e92be58305aa3b06a55e34118250b8e02e98841c8e22                                                                           0.0s
+ => => naming to docker.io/library/sreeni_test                                                                                                                         0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker iamges
+docker: 'iamges' is not a docker command.
+See 'docker --help'
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+sreeni_test   latest    812420a75f7b   4 weeks ago   77.8MB
+test1         latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run sreeni_test
+Hello sreeni!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                          PORTS     NAMES
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   About a minute ago   Exited (0) About a minute ago             elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   10 minutes ago       Exited (0) 10 minutes ago                 boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   About an hour ago    Exited (0) About an hour ago              zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it --name sreeni ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+405f018f9d1d: Already exists
+Digest: sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+Status: Downloaded newer image for ubuntu:latest
+root@38cbba7d1178:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@38cbba7d1178:/# echo
+
+root@38cbba7d1178:/# exit
+exit
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                         PORTS     NAMES
+38cbba7d1178   ubuntu         "bash"                   16 seconds ago      Exited (0) 2 seconds ago                 sreeni
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   4 minutes ago       Exited (0) 4 minutes ago                 elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   12 minutes ago      Exited (0) 12 minutes ago                boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   About an hour ago   Exited (0) About an hour ago             zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker rm 38cbba7d1178
+38cbba7d1178
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                         PORTS     NAMES
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   4 minutes ago       Exited (0) 4 minutes ago                 elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   13 minutes ago      Exited (0) 13 minutes ago                boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   About an hour ago   Exited (0) About an hour ago             zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it --name sreeni sreeni_test
+Hello sreeni!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                   PORTS     NAMES
+52d98b71cf39   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) 2 hours ago             sreeni
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) 2 hours ago             elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   2 hours ago   Exited (0) 2 hours ago             boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   3 hours ago   Exited (0) 3 hours ago             zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec -it 52d98b71cf39 /bin/bash .
+Error response from daemon: Container 52d98b71cf39640b58c252af0eb5887da96a685557e20dfe2ce4bb29460ababa is not running
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start 52d98b71cf39
+52d98b71cf39
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec -it 52d98b71cf39 /bin/bash .
+Error response from daemon: Container 52d98b71cf39640b58c252af0eb5887da96a685557e20dfe2ce4bb29460ababa is not running
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start sreeni_test
+Error response from daemon: No such container: sreeni_test
+Error: failed to start containers: sreeni_test
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start sreeni
+sreeni
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start sreeni
+sreeni
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+sreeni_test   latest    812420a75f7b   4 weeks ago   77.8MB
+ubuntu        latest    27941809078c   4 weeks ago   77.8MB
+test1         latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                          PORTS     NAMES
+52d98b71cf39   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) About a minute ago             sreeni
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) 2 hours ago                    elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   2 hours ago   Exited (0) 2 hours ago                    boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   3 hours ago   Exited (0) 3 hours ago                    zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start sreeni
+sreeni
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker attach sreeni
+You cannot attach to a stopped container, start it first
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                      PORTS     NAMES
+52d98b71cf39   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) 17 minutes ago             sreeni
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   2 hours ago   Exited (0) 2 hours ago                elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   3 hours ago   Exited (0) 3 hours ago                boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   4 hours ago   Exited (0) 4 hours ago                zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec -it 52d98b71cf39 /bin/bash .
+Error response from daemon: Container 52d98b71cf39640b58c252af0eb5887da96a685557e20dfe2ce4bb29460ababa is not running
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec -it 52d98b71cf39 /bin/bash
+Error response from daemon: Container 52d98b71cf39640b58c252af0eb5887da96a685557e20dfe2ce4bb29460ababa is not running
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start 52d98b71cf39
+52d98b71cf39
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker status 52d98b71cf39
+docker: 'status' is not a docker command.
+See 'docker --help'
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec -it 52d98b71cf39 /bin/bash
+Error response from daemon: Container 52d98b71cf39640b58c252af0eb5887da96a685557e20dfe2ce4bb29460ababa is not running
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec  52d98b71cf39
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Run a command in a running container
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker exec 52d98b71cf399 sreeni
+Error: No such container: 52d98b71cf399
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker start sreeni
+sreeni
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+ubuntu        latest    27941809078c   4 weeks ago   77.8MB
+sreeni_test   latest    812420a75f7b   4 weeks ago   77.8MB
+test1         latest    f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>$ docker tag ubuntu:latest ubuntu:myubuntu
+'$' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker tag ubuntu:latest ubuntu:myubuntu
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY    TAG        IMAGE ID       CREATED       SIZE
+sreeni_test   latest     812420a75f7b   4 weeks ago   77.8MB
+ubuntu        latest     27941809078c   4 weeks ago   77.8MB
+ubuntu        myubuntu   27941809078c   4 weeks ago   77.8MB
+test1         latest     f3eab0375c00   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: sreeni
+Password:
+Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: sreeni
+Password:
+Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                      PORTS     NAMES
+52d98b71cf39   sreeni_test    "echo 'Hello sreeni!'"   3 hours ago   Exited (0) 17 minutes ago             sreeni
+fe7f13c8bf6c   sreeni_test    "echo 'Hello sreeni!'"   3 hours ago   Exited (0) 3 hours ago                elated_keller
+6b7fa6575c26   f3eab0375c00   "echo 'Hello Machine…"   3 hours ago   Exited (0) 3 hours ago                boring_fermi
+4d15a317ae4c   f3eab0375c00   "echo 'Hello Machine…"   4 hours ago   Exited (0) 4 hours ago                zealous_colden
+
+C:\Users\000Z9H744\Desktop\DockerFiles>
+
+=====================================================================================================================
+
+
+
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+sreeni       latest    812420a75f7b   4 weeks ago   77.8MB
+ubuntu       latest    27941809078c   4 weeks ago   77.8MB
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   20 seconds ago   Exited (0) 19 seconds ago             sreeni123
+
+C:\Users\000Z9H744>docker pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+2408cc74d12b: Already exists
+Digest: sha256:686d8c9dfa6f3ccfc8230bc3178d23f84eeaf7e457f36f271ab1acc53015037c
+Status: Downloaded newer image for alpine:latest
+docker.io/library/alpine:latest
+
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+sreeni       latest    812420a75f7b   4 weeks ago   77.8MB
+ubuntu       latest    27941809078c   4 weeks ago   77.8MB
+alpine       latest    e66264b98777   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   2 minutes ago   Exited (0) 2 minutes ago             sreeni123
+
+C:\Users\000Z9H744>docker run -it --name sreeni321 alpine
+/ # exit
+
+C:\Users\000Z9H744>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+bf4140fdd684   alpine    "/bin/sh"                14 seconds ago   Exited (0) 9 seconds ago             sreeni321
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   3 minutes ago    Exited (0) 3 minutes ago             sreeni123
+
+C:\Users\000Z9H744>docker rm bf4140fdd684
+bf4140fdd684
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   4 minutes ago   Exited (0) 4 minutes ago             sreeni123
+
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+sreeni       latest    812420a75f7b   4 weeks ago   77.8MB
+ubuntu       latest    27941809078c   4 weeks ago   77.8MB
+alpine       latest    e66264b98777   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   4 minutes ago   Exited (0) 4 minutes ago             sreeni123
+
+C:\Users\000Z9H744>docker build -t sreeni123 -f Dockerfile1.txt .
+[+] Building 0.0s (1/2)
+ => [internal] load build definition from Dockerfile1.txt                                                                                                              0.0s
+ => => transferring dockerfile: 2B                                                                                                                                     0.0s
+failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount1218977127/Dockerfile1.txt: no such file or directory
+
+C:\Users\000Z9H744>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+ubuntu       latest    27941809078c   4 weeks ago   77.8MB
+sreeni       latest    812420a75f7b   4 weeks ago   77.8MB
+alpine       latest    e66264b98777   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   5 minutes ago   Exited (0) 5 minutes ago             sreeni123
+
+C:\Users\000Z9H744>docker build -t sara -f Dockerfile.txt .
+[+] Building 0.0s (1/2)
+ => [internal] load build definition from Dockerfile.txt                                                                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                                                                     0.0s
+failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount2245744037/Dockerfile.txt: no such file or directory
+
+C:\Users\000Z9H744>cd C:\Users\000Z9H744\Desktop\DockerFiles
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker build -t sara -f Dockerfile.txt .
+[+] Building 0.2s (5/5) FINISHED
+ => [internal] load build definition from Dockerfile.txt                                                                                                               0.0s
+ => => transferring dockerfile: 84B                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                                       0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine                                                                                                                         0.0s
+ => exporting to image                                                                                                                                                 0.0s
+ => => exporting layers                                                                                                                                                0.0s
+ => => writing image sha256:f3eab0375c009373ee00f7eb8b343435d31db979576be504d77cda0b68fae5af                                                                           0.0s
+ => => naming to docker.io/library/sara                                                                                                                                0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+sreeni       latest    812420a75f7b   4 weeks ago   77.8MB
+ubuntu       latest    27941809078c   4 weeks ago   77.8MB
+sara         latest    f3eab0375c00   6 weeks ago   5.53MB
+alpine       latest    e66264b98777   6 weeks ago   5.53MB
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   6 minutes ago   Exited (0) 6 minutes ago             sreeni123
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ee83d431dd1e   sreeni    "echo 'Hello sreeni!'"   6 minutes ago   Exited (0) 6 minutes ago             sreeni123
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run -it --name sreeni321 sara
+Hello Machine!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run 812420a75f7b
+Hello sreeni!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run f3eab0375c00
+Hello Machine!
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run 27941809078c
+
+C:\Users\000Z9H744\Desktop\DockerFiles>docker run e66264b98777
+
+C:\Users\000Z9H744\Desktop\DockerFiles>
